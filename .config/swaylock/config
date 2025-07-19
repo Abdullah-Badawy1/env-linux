@@ -1,0 +1,6 @@
+image=~/Pictures/nile.jpg
+scaling=fill
+color=000000
+show-indicator
+indicator-radius=100
+indicator-thickness=7

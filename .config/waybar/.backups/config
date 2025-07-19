@@ -1,0 +1,212 @@
+// Enhanced Waybar configuration for Void Linux with elogind
+// ~/.config/waybar/config
+{
+    // Basic settings
+    "height": 35,
+    "spacing": 6,
+    "margin-top": 5,
+    "margin-bottom": 0,
+    "margin-left": 10,
+    "margin-right": 10,
+    
+    // Module layout
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "power-profiles-daemon",
+        "tray",
+        "custom/power"
+    ],
+
+    // Workspaces configuration
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰲠",
+            "2": "󰲢",
+            "3": "󰲤",
+            "4": "󰲦",
+            "5": "󰲨",
+            "6": "󰲪",
+            "7": "󰲬",
+            "8": "󰲮",
+            "9": "󰲰",
+            "10": "󰿬",
+            "11": "󰲡",
+            "12": "󰲣",
+            "13": "󰲥",
+            "14": "󰲧",
+            "15": "󰲩",
+            "16": "󰲫",
+            "17": "󰲭",
+            "18": "󰲯",
+            "19": "󰲱",
+            "20": "󰿭",
+            "active": "󰮯",
+            "default": "󰊠",
+            "empty": "󰧵",
+            "urgent": "󰀨"
+        },
+        "persistent-workspaces": {
+            "*": 5
+        },
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+
+    // Window title
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": true,
+        "max-length": 50,
+        "icon": true,
+        "icon-size": 16
+    },
+
+    // Clock with enhanced styling
+    "clock": {
+        "interval": 60,
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    // Network with enhanced icons
+    "network": {
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "󰈀 {ipaddr}",
+        "format-disconnected": "󰤮 Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{icon} {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "󰈀 {ifname}",
+        "tooltip-format-disconnected": "󰤮 Disconnected",
+        "format-icons": {
+            "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+            "ethernet": "󰈀",
+            "disconnected": "󰤮"
+        },
+        "max-length": 50,
+        "on-click": "nm-connection-editor",
+        "on-click-right": "nmtui"
+    },
+
+    // Audio with enhanced controls
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 {volume}%",
+        "format-bluetooth": "{icon}󰂯 {volume}%",
+        "format-bluetooth-muted": "󰝟󰂯 {volume}%",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "󰍭",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip-format": "{desc}",
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "smooth-scrolling-threshold": 1
+    },
+
+    // Backlight with enhanced icons
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "tooltip-format": "Brightness: {percent}%",
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5"
+    },
+
+    // Battery with detailed states
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-good": "{icon} {capacity}%",
+        "format-warning": "{icon} {capacity}%",
+        "format-critical": "{icon} {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}, {capacity}%",
+        "tooltip-format-charging": "Charging: {timeTo}",
+        "tooltip-format-plugged": "Plugged in"
+    },
+
+    // Power profiles with enhanced icons
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "󰌪",
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰾆"
+        }
+    },
+
+    // System tray
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+        "show-passive-items": true
+    },
+
+    // Custom power menu for Void Linux with elogind
+    "custom/power": {
+        "format": "󰐥",
+        "tooltip": true,
+        "tooltip-format": "Power Menu",
+        "on-click": "~/.config/waybar/scripts/power-menu.sh",
+        "on-click-right": "~/.config/waybar/scripts/power-menu.sh"
+    }
+}

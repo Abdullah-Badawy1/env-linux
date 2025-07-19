@@ -1,0 +1,65 @@
+/* Power menu styling for wofi */
+/* ~/.config/waybar/scripts/power-menu.css */
+
+window {
+    margin: 0px;
+    border: 2px solid rgba(137, 180, 250, 0.5);
+    background-color: rgba(26, 27, 38, 0.95);
+    border-radius: 12px;
+    font-family: "JetBrainsMono Nerd Font", "Hack Nerd Font";
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#input {
+    margin: 5px;
+    border: 1px solid rgba(137, 180, 250, 0.3);
+    color: #cdd6f4;
+    background-color: rgba(49, 50, 68, 0.8);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: #cdd6f4;
+    padding: 8px 12px;
+}
+
+#entry {
+    border: none;
+    border-radius: 8px;
+    margin: 2px;
+    padding: 8px 12px;
+    background-color: rgba(49, 50, 68, 0.6);
+    color: #cdd6f4;
+}
+
+#entry:selected {
+    background-color: rgba(137, 180, 250, 0.8);
+    color: #11111b;
+    font-weight: bold;
+}
+
+#entry:hover {
+    background-color: rgba(137, 180, 250, 0.6);
+    color: #cdd6f4;
+}
