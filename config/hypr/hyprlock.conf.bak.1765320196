@@ -1,0 +1,45 @@
+source = ~/.config/omarchy/current/theme/hyprlock.conf
+
+background {
+    monitor =
+    path = ~/.config/omarchy/current/background
+    blur_passes = 0
+}
+
+label {
+    monitor =
+    text = cmd[update:1000] date '+%H:%M'
+    text_align = right
+    color = rgba(255, 255, 255, 1.0)
+    font_size = 120
+    font_family = JetBrainsMono Nerd Font
+    position = -50, -50
+    halign = right
+    valign = top
+}
+
+label {
+    monitor =
+    text = cmd[update:43200000] date '+%A, %B %d'
+    text_align = right
+    color = rgba(255, 255, 255, 0.8)
+    font_size = 24
+    font_family = JetBrainsMono Nerd Font
+    position = -50, -200
+    halign = right
+    valign = top
+}
+
+input-field {
+    monitor =
+    size = 300, 50
+    outline_thickness = 2
+    placeholder_text = <i>Password...</i>
+    position = -50, -280
+    halign = right
+    valign = top
+}
+
+auth {
+    fingerprint:enabled = true
+}
